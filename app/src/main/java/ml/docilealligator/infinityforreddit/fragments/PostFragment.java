@@ -1384,9 +1384,9 @@ public class PostFragment extends PostFragmentBase implements FragmentCommunicat
     }
 
     @Override
-    public void onDestroy() {
+    public void onDestroyView() {
         binding.recyclerViewPostFragment.addOnWindowFocusChangedListener(null);
-        super.onDestroy();
+        super.onDestroyView();
     }
 
     private void onWindowFocusChanged(boolean hasWindowsFocus) {

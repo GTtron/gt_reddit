@@ -514,7 +514,7 @@ public class ViewVideoActivity extends AppCompatActivity implements CustomFontRe
             subredditName = savedInstanceState.getString(SUBREDDIT_NAME_STATE);
             id = savedInstanceState.getString(ID_STATE);
             setNonDataSavingModeDefaultResolutionAlready = savedInstanceState.getBoolean(SET_NON_DATA_SAVING_MODE_DEFAULT_RESOLUTION_ALREADY_STATE);
-            setPlaybackSpeed(savedInstanceState.getInt(PLAYBACK_SPEED_STATE));
+            setPlaybackSpeed(savedInstanceState.getInt(PLAYBACK_SPEED_STATE, 100));
         }
 
         MaterialButton playPauseButton = findViewById(R.id.exo_play_pause_button_exo_playback_control_view);
@@ -933,8 +933,8 @@ public class ViewVideoActivity extends AppCompatActivity implements CustomFontRe
     }
 
     public void setPlaybackSpeed(int speed100X) {
-        this.playbackSpeed = speed100X;
-        player.setPlaybackParameters(new PlaybackParameters((float) (speed100X / 100.0)));
+        this.playbackSpeed = speed100X <= 0 ? 100 : speed100X;
+        player.setPlaybackParameters(new PlaybackParameters((speed100X / 100.0f)));
     }
 
     private void requestPermissionAndDownload() {
